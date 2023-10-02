@@ -32,13 +32,13 @@ class Message extends PureComponent {
     }
 
     return (
-      <div
+      <section
         className={sender === 'response' && customCss && customCss.style === 'class' ?
           `rw-response ${customCss.css}` :
           `rw-${sender}`}
         style={style}
-      >
-        <div
+      tabIndex="0">
+        <section
           className="rw-message-text"
         >
           {sender === 'response' ? (
@@ -62,8 +62,8 @@ class Message extends PureComponent {
           ) : (
             text
           )}
-        </div>
-      </div>
+        </section>
+      </section>
     );
   }
 }

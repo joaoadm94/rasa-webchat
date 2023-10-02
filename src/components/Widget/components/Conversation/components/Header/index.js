@@ -22,14 +22,14 @@ const Header = ({
 }) => {
   const { mainColor } = useContext(ThemeContext);
   return (
-    <div className="rw-header-and-loading">
-      <div style={{ backgroundColor: mainColor }}className={`rw-header ${subtitle ? 'rw-with-subtitle' : ''}`}>
+    <section className="rw-header-and-loading">
+      <section style={{ backgroundColor: mainColor }}className={`rw-header ${subtitle ? 'rw-with-subtitle' : ''}`}>
         {
           profileAvatar && (
             <img src={profileAvatar} className="rw-avatar" alt="chat avatar" />
           )
         }
-        <div className="rw-header-buttons">
+        <section className="rw-header-buttons">
           {
             showFullScreenButton &&
             <button className="rw-toggle-fullscreen-button" onClick={toggleFullScreen}>
@@ -50,17 +50,17 @@ const Header = ({
               />
             </button>
           }
-        </div>
-        <h4 className={`rw-title ${profileAvatar && 'rw-with-avatar'}`}>{title}</h4>
+        </section>
+        <h4 className={`rw-title ${profileAvatar && 'rw-with-avatar'}`} tabindex="0">{title}</h4>
         {subtitle && <span className={profileAvatar && 'rw-with-avatar'}>{subtitle}</span>}
-      </div>
+      </section>
       {
         !connected &&
         <span className="rw-loading">
           {connectingText}
         </span>
       }
-    </div>);
+    </section>);
 };
 
 Header.propTypes = {

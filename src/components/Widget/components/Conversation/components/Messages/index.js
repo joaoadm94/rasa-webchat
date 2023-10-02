@@ -105,7 +105,7 @@ class Messages extends Component {
       };
 
       const renderMessage = (message, index) => (
-        <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+        <section className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
           {
             profileAvatar &&
             message.get('showAvatar') &&
@@ -113,7 +113,7 @@ class Messages extends Component {
           }
           {this.getComponentToRender(message, index, index === messages.size - 1)}
           {renderMessageDate(message)}
-        </div>
+        </section>
       );
 
       messages.forEach((msg, index) => {
@@ -133,32 +133,32 @@ class Messages extends Component {
       groups.push(group); // finally push last group of messages.
 
       return groups.map((g, index) => (
-        <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+        <section className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
           {g.messages}
-        </div>
+        </section>
       ));
     };
     const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
     return (
-      <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
+      <section id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
         { renderMessages() }
         {displayTypingIndication && (
-          <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
+          <section className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
             {
               profileAvatar &&
               <img src={profileAvatar} className="rw-avatar" alt="profile" />
             }
-            <div style={{ backgroundColor: assistBackgoundColor }}className="rw-response">
-              <div id="wave">
+            <section style={{ backgroundColor: assistBackgoundColor }}className="rw-response">
+              <section id="wave">
                 <span className="rw-dot" />
                 <span className="rw-dot" />
                 <span className="rw-dot" />
-              </div>
-            </div>
-          </div>
+              </section>
+            </section>
+          </section>
         )}
-      </div>
+      </section>
     );
   }
 }

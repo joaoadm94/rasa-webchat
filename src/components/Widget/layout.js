@@ -21,7 +21,7 @@ const WidgetLayout = (props) => {
   }
 
   return isVisible ? (
-    <div className={classes.join(' ')}>
+    <section className={classes.join(' ')}>
       {chatShowing && (
         <Conversation
           title={props.title}
@@ -56,7 +56,7 @@ const WidgetLayout = (props) => {
           tooltipPayload={props.tooltipPayload}
         />
       )}
-    </div>
+    </section>
   ) : null;
 };
 

@@ -7,7 +7,7 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props =>
-  <div className="rw-conversation-container">
+  <section className="rw-conversation-container" tabindex="0">
     <Header
       title={props.title}
       subtitle={props.subtitle}
@@ -32,7 +32,7 @@ const Conversation = props =>
       disabledInput={props.disabledInput}
       inputTextFieldHint={props.inputTextFieldHint}
     />
-  </div>;
+  </section>;
 
 Conversation.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
