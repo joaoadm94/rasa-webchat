@@ -13,6 +13,7 @@ class Message extends PureComponent {
     const { docViewer, linkTarget } = this.props;
     const sender = this.props.message.get('sender');
     const text = this.props.message.get('text');
+    const botText = `<span tabIndex="0" aria-label="the bot said">` + text + `</span>`
     const customCss = this.props.message.get('customCss') && this.props.message.get('customCss').toJS();
 
     if (customCss && customCss.style === 'class') {
@@ -36,31 +37,39 @@ class Message extends PureComponent {
         className={sender === 'response' && customCss && customCss.style === 'class' ?
           `rw-response ${customCss.css}` :
           `rw-${sender}`}
-        style={style}
-      tabIndex="0">
+        style={style}>
         <section
-          className="rw-message-text"
-        >
+          className="rw-message-text">
           {sender === 'response' ? (
             <ReactMarkdown
               className={'rw-markdown'}
+              tabIndex="0"
               source={text}
               linkTarget={(url) => {
                 if (!url.startsWith('mailto') && !url.startsWith('javascript')) return '_blank';
                 return undefined;
               }}
               transformLinkUri={null}
+              components={{
+                p: React.Fragment,
+              }}
               renderers={{
                 link: props =>
                   docViewer ? (
                     <DocViewer src={props.href}>{props.children}</DocViewer>
                   ) : (
                     <a href={props.href} target={linkTarget || '_blank'} rel="noopener noreferrer" onMouseUp={e => e.stopPropagation()}>{props.children}</a>
-                  )
+                  ),
+                paragraph: () => {
+                    return <section tabIndex="0" aria-label='o bot disse' aria-live='polite'>{text}</section>;
+                    //return <span tabIndex="0"><span class="visually-hidden">the bot said</span><span>{text}</span></span>
+                }
               }}
             />
           ) : (
-            text
+            <section tabIndex="0" aria-label='o usuário disse' aria-live='polite'>{text}</section>
+            //<span tabIndex="0">{text}</span>
+            //<span tabIndex="0"><span class="visually-hidden">the user said</span>{text}</span>
           )}
         </section>
       </section>

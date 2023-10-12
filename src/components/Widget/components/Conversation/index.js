@@ -7,7 +7,7 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props =>
-  <section className="rw-conversation-container" tabindex="0">
+  <section className="rw-conversation-container" tabindex="0" aria-label="chatbot widget" aria-live='polite'>
     <Header
       title={props.title}
       subtitle={props.subtitle}
