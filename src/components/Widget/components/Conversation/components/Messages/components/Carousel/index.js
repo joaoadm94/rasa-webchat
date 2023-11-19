@@ -56,14 +56,14 @@ const Carousel = (props) => {
 
   return (
     <React.Fragment>
-      <div className="rw-carousel-container" ref={scrollContainer} onScroll={() => handleScroll()}>
+      <div role="list" className="rw-carousel-container" ref={scrollContainer} onScroll={() => handleScroll()}>
         {carousel.elements.map((carouselCard, index) => {
           const defaultActionUrl =
             carouselCard.default_action && carouselCard.default_action.type === 'web_url'
               ? carouselCard.default_action.url
               : null;
           return (
-            <div className="rw-carousel-card" key={index}>
+            <div role="listitem" className="rw-carousel-card" key={index}>
               <a
                 href={defaultActionUrl}
                 target={linkTarget || '_blank'}
@@ -86,6 +86,7 @@ const Carousel = (props) => {
                 target={linkTarget || '_blank'}
                 rel="noopener noreferrer"
                 onClick={() => handleClick(carouselCard.default_action)}
+                onKeyUp={(e) => { var keyCode = e.key; if((keyCode == "Enter")||(keyCode == "Space")) {e.stopPropagation(); handleClick(carouselCard.default_action);}}}
                 style={{ color: assistTextColor }}
               >
                 {carouselCard.title}
@@ -96,6 +97,7 @@ const Carousel = (props) => {
                 target={linkTarget || '_blank'}
                 rel="noopener noreferrer"
                 onClick={() => handleClick(carouselCard.default_action)}
+                onKeyUp={(e) => { var keyCode = e.key; if((keyCode == "Enter")||(keyCode == "Space")) {e.stopPropagation(); handleClick(carouselCard.default_action);}}}
                 style={{ color: assistTextColor }}
               >
                 {carouselCard.subtitle}
@@ -122,6 +124,7 @@ const Carousel = (props) => {
                       key={buttonIndex}
                       className="rw-reply"
                       onClick={() => handleClick(button)}
+                      onKeyUp={(e) => { var keyCode = e.key; if((keyCode == "Enter")||(keyCode == "Space")) {e.stopPropagation(); handleClick(button);}}}
                       role="button"
                       tabIndex={0}
                       style={{ borderColor: mainColor, color: mainColor }}
@@ -142,7 +145,6 @@ const Carousel = (props) => {
             className="rw-left-arrow rw-carousel-arrow"
             onClick={handleLeftArrow}
             role="button"
-            tabIndex={0}
           >
             <div className="rw-arrow" alt="left carousel arrow" ><Arrow /></div>
           </div>
@@ -153,7 +155,6 @@ const Carousel = (props) => {
             className="rw-right-arrow rw-carousel-arrow"
             onClick={handleRightArrow}
             role="button"
-            tabIndex={0}
           >
             <div className="rw-arrow" alt="right carousel arrow"><Arrow /></div>
           </div>

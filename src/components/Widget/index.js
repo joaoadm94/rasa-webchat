@@ -582,31 +582,31 @@ class Widget extends Component {
 
   render() {
     return (
-      <WidgetLayout
-        toggleChat={() => this.toggleConversation()}
-        toggleFullScreen={() => this.toggleFullScreen()}
-        onSendMessage={event => this.handleMessageSubmit(event)}
-        title={this.props.title}
-        subtitle={this.props.subtitle}
-        customData={this.props.customData}
-        profileAvatar={this.props.profileAvatar}
-        showCloseButton={this.props.showCloseButton}
-        showFullScreenButton={this.props.showFullScreenButton}
-        hideWhenNotConnected={this.props.hideWhenNotConnected}
-        fullScreenMode={this.props.fullScreenMode}
-        isChatOpen={this.props.isChatOpen}
-        isChatVisible={this.props.isChatVisible}
-        badge={this.props.badge}
-        embedded={this.props.embedded}
-        params={this.props.params}
-        openLauncherImage={this.props.openLauncherImage}
-        inputTextFieldHint={this.props.inputTextFieldHint}
-        closeImage={this.props.closeImage}
-        customComponent={this.props.customComponent}
-        displayUnreadCount={this.props.displayUnreadCount}
-        showMessageDate={this.props.showMessageDate}
-        tooltipPayload={this.props.tooltipPayload}
-      />
+        <WidgetLayout
+          toggleChat={() => this.toggleConversation()}
+          toggleFullScreen={() => this.toggleFullScreen()}
+          onSendMessage={event => this.handleMessageSubmit(event)}
+          title={this.props.title}
+          subtitle={this.props.subtitle}
+          customData={this.props.customData}
+          profileAvatar={this.props.profileAvatar}
+          showCloseButton={this.props.showCloseButton}
+          showFullScreenButton={this.props.showFullScreenButton}
+          hideWhenNotConnected={this.props.hideWhenNotConnected}
+          fullScreenMode={this.props.fullScreenMode}
+          isChatOpen={this.props.isChatOpen}
+          isChatVisible={this.props.isChatVisible}
+          badge={this.props.badge}
+          embedded={this.props.embedded}
+          params={this.props.params}
+          openLauncherImage={this.props.openLauncherImage}
+          inputTextFieldHint={this.props.inputTextFieldHint}
+          closeImage={this.props.closeImage}
+          customComponent={this.props.customComponent}
+          displayUnreadCount={this.props.displayUnreadCount}
+          showMessageDate={this.props.showMessageDate}
+          tooltipPayload={this.props.tooltipPayload}
+          />
     );
   }
 }

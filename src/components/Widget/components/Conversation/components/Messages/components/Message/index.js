@@ -33,17 +33,16 @@ class Message extends PureComponent {
     }
 
     return (
-      <section
+      <div
         className={sender === 'response' && customCss && customCss.style === 'class' ?
           `rw-response ${customCss.css}` :
           `rw-${sender}`}
         style={style}>
-        <section
+        <div
           className="rw-message-text">
           {sender === 'response' ? (
             <ReactMarkdown
               className={'rw-markdown'}
-              tabIndex="0"
               source={text}
               linkTarget={(url) => {
                 if (!url.startsWith('mailto') && !url.startsWith('javascript')) return '_blank';
@@ -61,18 +60,15 @@ class Message extends PureComponent {
                     <a href={props.href} target={linkTarget || '_blank'} rel="noopener noreferrer" onMouseUp={e => e.stopPropagation()}>{props.children}</a>
                   ),
                 paragraph: () => {
-                    return <section tabIndex="0" aria-label='o bot disse' aria-live='polite'>{text}</section>;
-                    //return <span tabIndex="0"><span class="visually-hidden">the bot said</span><span>{text}</span></span>
+                    return <div><p>{text}<span class="visually-hidden">This is a message</span></p></div>;
                 }
               }}
             />
           ) : (
-            <section tabIndex="0" aria-label='o usuário disse' aria-live='polite'>{text}</section>
-            //<span tabIndex="0">{text}</span>
-            //<span tabIndex="0"><span class="visually-hidden">the user said</span>{text}</span>
+            <div><p>{text}<span class="visually-hidden">This is a message</span></p></div>
           )}
-        </section>
-      </section>
+        </div>
+      </div>
     );
   }
 }

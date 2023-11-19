@@ -7,7 +7,7 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props =>
-  <section className="rw-conversation-container" tabindex="0" aria-label="chatbot widget" aria-live='polite'>
+  <div className="rw-conversation-container">
     <Header
       title={props.title}
       subtitle={props.subtitle}
@@ -32,7 +32,7 @@ const Conversation = props =>
       disabledInput={props.disabledInput}
       inputTextFieldHint={props.inputTextFieldHint}
     />
-  </section>;
+  </div>;
 
 Conversation.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),

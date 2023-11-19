@@ -105,15 +105,15 @@ class Messages extends Component {
       };
 
       const renderMessage = (message, index) => (
-        <section className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+        <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
           {
             profileAvatar &&
             message.get('showAvatar') &&
             <img src={profileAvatar} className="rw-avatar" alt="profile" />
-          }
+          } 
           {this.getComponentToRender(message, index, index === messages.size - 1)}
           {renderMessageDate(message)}
-        </section>
+        </div>
       );
 
       messages.forEach((msg, index) => {
@@ -132,33 +132,47 @@ class Messages extends Component {
 
       groups.push(group); // finally push last group of messages.
 
+      const setAriaLabelSender = (g) => {
+        if (g.from == "client") return "you said"
+          return "the assistant said"
+      }
+
       return groups.map((g, index) => (
-        <section className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-          {g.messages}
-        </section>
+        <li id="message" role="listitem" className='list-item-message'>
+          <span className="visually-hidden">{setAriaLabelSender(g)}</span>
+          <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+            {g.messages}
+          </div>
+        </li>
       ));
     };
     const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
     return (
-      <section id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
-        { renderMessages() }
+      <div tabIndex={0} id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container" role="region" aria-label="conversation window">
+        <ol region="log" class="visually-hidden" aria-hidden>
+          { renderNotifications() }
+        </ol>
+        <ol>
+          { renderMessages() }
+        </ol>
+        <div id="end-of-conversation" class="visually-hidden">end of conversation</div>
         {displayTypingIndication && (
-          <section className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
+          <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
             {
               profileAvatar &&
               <img src={profileAvatar} className="rw-avatar" alt="profile" />
             }
-            <section style={{ backgroundColor: assistBackgoundColor }}className="rw-response">
-              <section id="wave">
+            <div style={{ backgroundColor: assistBackgoundColor }}className="rw-response">
+              <div id="wave">
                 <span className="rw-dot" />
                 <span className="rw-dot" />
                 <span className="rw-dot" />
-              </section>
-            </section>
-          </section>
+              </div>
+            </div>
+          </div>
         )}
-      </section>
+      </div>
     );
   }
 }

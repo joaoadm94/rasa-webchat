@@ -206,7 +206,7 @@ const Launcher = ({
   );
 
   return (
-    <button type="button" style={{ backgroundColor: mainColor }} className={className.join(' ')} onClick={toggle}>
+    <button role="button" aria-label="talk to assistant" type="button" style={{ backgroundColor: mainColor }} className={className.join(' ')} onClick={toggle}>
       <Badge badge={badge} />
       {isChatOpen ? (
         <img

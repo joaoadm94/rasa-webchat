@@ -18,7 +18,7 @@ class ImgReply extends PureComponent {
 
     return (
 
-      <div
+      <div role="figure"
         className={customCss && customCss.style === 'class' ?
           `image ${customCss.css}` :
           'image'}

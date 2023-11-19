@@ -27,6 +27,7 @@
     "immutable": "^3.8.2",
     "object-hash": "^1.1.5",
     "prop-types": "^15.7.2",
+    "react-aria-live": "^2.0.5",
     "react-immutable-proptypes": "^2.2.0",
     "react-markdown": "^4.2.2",
     "react-popper": "^2.2.3",
