@@ -43,7 +43,7 @@ const Launcher = ({
 
   useEffect(() => {
     const setReference = (selector) => {
-      const reference = safeQuerySelectorAll(selector)
+      const reference = safeQuerySelectorAll(selector);
       if (reference && reference.length === 1) {
         onRemove(reference[0], () => setReferenceElement(null));
         setReferenceElement(reference[0]);
@@ -189,7 +189,11 @@ const Launcher = ({
 
   const renderToolTip = () => (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div className="rw-tooltip-body" style={{ backgroundColor: assistBackgoundColor }} onClick={(e) => { e.stopPropagation(); }}>
+    <div
+      className="rw-tooltip-body"
+      style={{ backgroundColor: assistBackgoundColor }}
+      onClick={(e) => { e.stopPropagation(); }}
+    >
       {renderTooltipContent()}
       <div className="rw-tooltip-decoration" style={{ backgroundColor: assistBackgoundColor }} />
     </div>
@@ -206,7 +210,13 @@ const Launcher = ({
   );
 
   return (
-    <button role="button" aria-label="talk to assistant" type="button" style={{ backgroundColor: mainColor }} className={className.join(' ')} onClick={toggle}>
+    <button
+      aria-label="go to chat with virtual assistant"
+      type="button"
+      style={{ backgroundColor: mainColor }}
+      className={className.join(' ')}
+      onClick={toggle}
+    >
       <Badge badge={badge} />
       {isChatOpen ? (
         <img

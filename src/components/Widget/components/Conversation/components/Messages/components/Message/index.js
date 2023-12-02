@@ -13,7 +13,6 @@ class Message extends PureComponent {
     const { docViewer, linkTarget } = this.props;
     const sender = this.props.message.get('sender');
     const text = this.props.message.get('text');
-    const botText = `<span tabIndex="0" aria-label="the bot said">` + text + `</span>`
     const customCss = this.props.message.get('customCss') && this.props.message.get('customCss').toJS();
 
     if (customCss && customCss.style === 'class') {
@@ -37,9 +36,11 @@ class Message extends PureComponent {
         className={sender === 'response' && customCss && customCss.style === 'class' ?
           `rw-response ${customCss.css}` :
           `rw-${sender}`}
-        style={style}>
+        style={style}
+      >
         <div
-          className="rw-message-text">
+          className="rw-message-text"
+        >
           {sender === 'response' ? (
             <ReactMarkdown
               className={'rw-markdown'}
@@ -50,7 +51,7 @@ class Message extends PureComponent {
               }}
               transformLinkUri={null}
               components={{
-                p: React.Fragment,
+                p: React.Fragment
               }}
               renderers={{
                 link: props =>
@@ -59,13 +60,11 @@ class Message extends PureComponent {
                   ) : (
                     <a href={props.href} target={linkTarget || '_blank'} rel="noopener noreferrer" onMouseUp={e => e.stopPropagation()}>{props.children}</a>
                   ),
-                paragraph: () => {
-                    return <div><p>{text}<span class="visually-hidden">This is a message</span></p></div>;
-                }
+                paragraph: () => <div><p>{text}</p></div>
               }}
             />
           ) : (
-            <div><p>{text}<span class="visually-hidden">This is a message</span></p></div>
+            <div><p>{text}</p></div>
           )}
         </div>
       </div>

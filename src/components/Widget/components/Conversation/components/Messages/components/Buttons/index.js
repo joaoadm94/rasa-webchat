@@ -72,11 +72,13 @@ class Buttons extends PureComponent {
               }
               return (
                 // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div role="button" tabIndex={0}
+                <div
+                  role="button"
+                  tabIndex={0}
                   key={index}
                   className={'rw-reply'}
                   onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
-                  onKeyUp={(e) => { var keyCode = e.key; if((keyCode == "Enter")||(keyCode == "Space")) {e.stopPropagation(); this.handleClick(reply);}}}
+                  onKeyUp={(e) => { const keyCode = e.key; if ((keyCode === 'Enter') || (keyCode === 'Space')) { e.stopPropagation(); this.handleClick(reply); } }}
                   style={buttonStyle}
                   onMouseUp={e => e.stopPropagation()}
                 >

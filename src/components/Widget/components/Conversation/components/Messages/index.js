@@ -110,7 +110,7 @@ class Messages extends Component {
             profileAvatar &&
             message.get('showAvatar') &&
             <img src={profileAvatar} className="rw-avatar" alt="profile" />
-          } 
+          }
           {this.getComponentToRender(message, index, index === messages.size - 1)}
           {renderMessageDate(message)}
         </div>
@@ -133,13 +133,15 @@ class Messages extends Component {
       groups.push(group); // finally push last group of messages.
 
       const setAriaLabelSender = (g) => {
-        if (g.from == "client") return "you said"
-          return "the assistant said"
-      }
+        if (g.from === 'client') return 'you said';
+        return 'the assistant said';
+      };
 
       return groups.map((g, index) => (
-        <li id="message" role="listitem" className='list-item-message'>
-          <span className="visually-hidden">{setAriaLabelSender(g)}</span>
+        <li id="message" className="list-item-message">
+          <div className="visually-hidden">
+            <p>{setAriaLabelSender(g)}</p>
+          </div>
           <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
             {g.messages}
           </div>
@@ -150,13 +152,10 @@ class Messages extends Component {
 
     return (
       <div tabIndex={0} id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container" role="region" aria-label="conversation window">
-        <ol region="log" class="visually-hidden" aria-hidden>
-          { renderNotifications() }
-        </ol>
-        <ol>
+        <ol role="log" aria-live="polite" aria-relevant="text" aria-atomic="false">
           { renderMessages() }
         </ol>
-        <div id="end-of-conversation" class="visually-hidden">end of conversation</div>
+        <div id="end-of-conversation" className="visually-hidden">end of conversation</div>
         {displayTypingIndication && (
           <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
             {

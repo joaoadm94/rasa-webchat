@@ -15,12 +15,14 @@ module.exports = {
   },
   "plugins": [
     "react",
-    "flowtype"
+    "flowtype",
+    "jsx-a11y"
   ],
   "extends": [
     "eslint:recommended",
     "airbnb",
     "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "globals": {
     "__DEV__": true,
